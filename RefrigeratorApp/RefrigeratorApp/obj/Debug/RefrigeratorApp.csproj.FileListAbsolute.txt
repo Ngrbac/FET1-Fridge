@@ -1,0 +1,10 @@
+D:\RefrigeratorApp\RefrigeratorApp\RefrigeratorApp\bin\Debug\RefrigeratorApp.exe.config
+D:\RefrigeratorApp\RefrigeratorApp\RefrigeratorApp\bin\Debug\RefrigeratorApp.exe
+D:\RefrigeratorApp\RefrigeratorApp\RefrigeratorApp\bin\Debug\RefrigeratorApp.pdb
+D:\RefrigeratorApp\RefrigeratorApp\RefrigeratorApp\obj\Debug\RefrigeratorApp.csprojResolveAssemblyReference.cache
+D:\RefrigeratorApp\RefrigeratorApp\RefrigeratorApp\obj\Debug\RefrigeratorApp.frmMain.resources
+D:\RefrigeratorApp\RefrigeratorApp\RefrigeratorApp\obj\Debug\RefrigeratorApp.Properties.Resources.resources
+D:\RefrigeratorApp\RefrigeratorApp\RefrigeratorApp\obj\Debug\RefrigeratorApp.csproj.GenerateResource.Cache
+D:\RefrigeratorApp\RefrigeratorApp\RefrigeratorApp\obj\Debug\RefrigeratorApp.csproj.CoreCompileInputs.cache
+D:\RefrigeratorApp\RefrigeratorApp\RefrigeratorApp\obj\Debug\RefrigeratorApp.exe
+D:\RefrigeratorApp\RefrigeratorApp\RefrigeratorApp\obj\Debug\RefrigeratorApp.pdb
