@@ -45,14 +45,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Controller.cs" />
+    <Compile Include="frmAddFridgeItem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="frmAddFridgeItem.Designer.cs">
+      <DependentUpon>frmAddFridgeItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="lib\FoodItem.cs" />
+    <Compile Include="lib\FridgeItem.cs" />
+    <Compile Include="lib\MeasuredItem.cs" />
+    <Compile Include="lib\Measurement.cs" />
+    <Compile Include="lib\Refrigerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAddFridgeItem.resx">
+      <DependentUpon>frmAddFridgeItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
