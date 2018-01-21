@@ -30,28 +30,31 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gbFridgeItems = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.lblSearch = new System.Windows.Forms.Label();
+            this.btnAddFridgeItem = new System.Windows.Forms.Button();
             this.dgvFridgeGrid = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.measureDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.daysLeftDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fridgeDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bsFridgeData = new System.Windows.Forms.BindingSource(this.components);
             this.dsFridgeGrid = new System.Data.DataSet();
             this.dtFridgeData = new System.Data.DataTable();
             this.dataColumn1 = new System.Data.DataColumn();
             this.dataColumn2 = new System.Data.DataColumn();
             this.dataColumn3 = new System.Data.DataColumn();
             this.dataColumn4 = new System.Data.DataColumn();
-            this.bsFridgeData = new System.Windows.Forms.BindingSource(this.components);
-            this.fridgeDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.measureDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.daysLeftDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAddFridgeItem = new System.Windows.Forms.Button();
+            this.lblSearch = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnFoodItems = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.gbFridgeItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFridgeGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fridgeDataBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsFridgeData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsFridgeGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFridgeData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsFridgeData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fridgeDataBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // gbFridgeItems
@@ -70,27 +73,15 @@
             this.gbFridgeItems.TabStop = false;
             this.gbFridgeItems.Text = "Fridge items";
             // 
-            // textBox1
+            // btnAddFridgeItem
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox1.Location = new System.Drawing.Point(191, 27);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(381, 26);
-            this.textBox1.TabIndex = 0;
-            // 
-            // lblSearch
-            // 
-            this.lblSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSearch.AutoSize = true;
-            this.lblSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblSearch.Location = new System.Drawing.Point(121, 30);
-            this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(64, 20);
-            this.lblSearch.TabIndex = 1;
-            this.lblSearch.Text = "Search:";
+            this.btnAddFridgeItem.Location = new System.Drawing.Point(23, 28);
+            this.btnAddFridgeItem.Name = "btnAddFridgeItem";
+            this.btnAddFridgeItem.Size = new System.Drawing.Size(92, 26);
+            this.btnAddFridgeItem.TabIndex = 3;
+            this.btnAddFridgeItem.Text = "Add";
+            this.btnAddFridgeItem.UseVisualStyleBackColor = true;
+            this.btnAddFridgeItem.Click += new System.EventHandler(this.btnAddFridgeItem_Click);
             // 
             // dgvFridgeGrid
             // 
@@ -112,6 +103,45 @@
             this.dgvFridgeGrid.ReadOnly = true;
             this.dgvFridgeGrid.Size = new System.Drawing.Size(566, 423);
             this.dgvFridgeGrid.TabIndex = 2;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // quantityDataGridViewTextBoxColumn
+            // 
+            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
+            this.quantityDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // measureDataGridViewTextBoxColumn
+            // 
+            this.measureDataGridViewTextBoxColumn.DataPropertyName = "Measure";
+            this.measureDataGridViewTextBoxColumn.HeaderText = "Measure";
+            this.measureDataGridViewTextBoxColumn.Name = "measureDataGridViewTextBoxColumn";
+            this.measureDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // daysLeftDataGridViewTextBoxColumn
+            // 
+            this.daysLeftDataGridViewTextBoxColumn.DataPropertyName = "DaysLeft";
+            this.daysLeftDataGridViewTextBoxColumn.HeaderText = "DaysLeft";
+            this.daysLeftDataGridViewTextBoxColumn.Name = "daysLeftDataGridViewTextBoxColumn";
+            this.daysLeftDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // fridgeDataBindingSource
+            // 
+            this.fridgeDataBindingSource.DataMember = "FridgeData";
+            this.fridgeDataBindingSource.DataSource = this.bsFridgeData;
+            // 
+            // bsFridgeData
+            // 
+            this.bsFridgeData.DataSource = this.dsFridgeGrid;
+            this.bsFridgeData.Position = 0;
             // 
             // dsFridgeGrid
             // 
@@ -146,70 +176,75 @@
             this.dataColumn4.Caption = "Days left";
             this.dataColumn4.ColumnName = "DaysLeft";
             // 
-            // bsFridgeData
+            // lblSearch
             // 
-            this.bsFridgeData.DataSource = this.dsFridgeGrid;
-            this.bsFridgeData.Position = 0;
+            this.lblSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblSearch.Location = new System.Drawing.Point(121, 30);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(64, 20);
+            this.lblSearch.TabIndex = 1;
+            this.lblSearch.Text = "Search:";
             // 
-            // fridgeDataBindingSource
+            // textBox1
             // 
-            this.fridgeDataBindingSource.DataMember = "FridgeData";
-            this.fridgeDataBindingSource.DataSource = this.bsFridgeData;
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox1.Location = new System.Drawing.Point(191, 27);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(381, 26);
+            this.textBox1.TabIndex = 0;
             // 
-            // nameDataGridViewTextBoxColumn
+            // btnFoodItems
             // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.btnFoodItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnFoodItems.Location = new System.Drawing.Point(12, 25);
+            this.btnFoodItems.Name = "btnFoodItems";
+            this.btnFoodItems.Size = new System.Drawing.Size(277, 37);
+            this.btnFoodItems.TabIndex = 1;
+            this.btnFoodItems.Text = "Food items";
+            this.btnFoodItems.UseVisualStyleBackColor = true;
+            this.btnFoodItems.Click += new System.EventHandler(this.btnFoodItems_Click);
             // 
-            // quantityDataGridViewTextBoxColumn
+            // button2
             // 
-            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
-            this.quantityDataGridViewTextBoxColumn.ReadOnly = true;
+            this.button2.Location = new System.Drawing.Point(12, 68);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(277, 37);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
             // 
-            // measureDataGridViewTextBoxColumn
+            // button3
             // 
-            this.measureDataGridViewTextBoxColumn.DataPropertyName = "Measure";
-            this.measureDataGridViewTextBoxColumn.HeaderText = "Measure";
-            this.measureDataGridViewTextBoxColumn.Name = "measureDataGridViewTextBoxColumn";
-            this.measureDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // daysLeftDataGridViewTextBoxColumn
-            // 
-            this.daysLeftDataGridViewTextBoxColumn.DataPropertyName = "DaysLeft";
-            this.daysLeftDataGridViewTextBoxColumn.HeaderText = "DaysLeft";
-            this.daysLeftDataGridViewTextBoxColumn.Name = "daysLeftDataGridViewTextBoxColumn";
-            this.daysLeftDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // btnAddFridgeItem
-            // 
-            this.btnAddFridgeItem.Location = new System.Drawing.Point(23, 28);
-            this.btnAddFridgeItem.Name = "btnAddFridgeItem";
-            this.btnAddFridgeItem.Size = new System.Drawing.Size(92, 26);
-            this.btnAddFridgeItem.TabIndex = 3;
-            this.btnAddFridgeItem.Text = "Add";
-            this.btnAddFridgeItem.UseVisualStyleBackColor = true;
-            this.btnAddFridgeItem.Click += new System.EventHandler(this.btnAddFridgeItem_Click);
+            this.button3.Location = new System.Drawing.Point(12, 111);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(277, 37);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(897, 527);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnFoodItems);
             this.Controls.Add(this.gbFridgeItems);
             this.Name = "frmMain";
             this.Text = "Refrigerator";
             this.gbFridgeItems.ResumeLayout(false);
             this.gbFridgeItems.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFridgeGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fridgeDataBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsFridgeData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsFridgeGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFridgeData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsFridgeData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fridgeDataBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -233,6 +268,9 @@
         private System.Data.DataColumn dataColumn3;
         private System.Data.DataColumn dataColumn4;
         private System.Windows.Forms.Button btnAddFridgeItem;
+        private System.Windows.Forms.Button btnFoodItems;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
 

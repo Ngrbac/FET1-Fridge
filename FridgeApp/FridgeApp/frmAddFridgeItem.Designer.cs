@@ -43,6 +43,9 @@
             this.tbQuantity.Name = "tbQuantity";
             this.tbQuantity.Size = new System.Drawing.Size(188, 26);
             this.tbQuantity.TabIndex = 1;
+            this.tbQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbQuantity.TextChanged += new System.EventHandler(this.tbQuantity_TextChanged);
+            this.tbQuantity.Leave += new System.EventHandler(this.tbQuantity_Leave);
             // 
             // lblQuantity
             // 
@@ -78,6 +81,7 @@
             // btnAccept
             // 
             this.btnAccept.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnAccept.Enabled = false;
             this.btnAccept.Location = new System.Drawing.Point(166, 101);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(77, 31);
@@ -107,6 +111,7 @@
             this.Controls.Add(this.cbFoodItem);
             this.Controls.Add(this.lblQuantity);
             this.Controls.Add(this.tbQuantity);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "frmAddFridgeItem";
             this.Text = "Adding Item";
             this.Load += new System.EventHandler(this.frmAddFridgeItem_Load);

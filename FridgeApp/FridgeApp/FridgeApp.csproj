@@ -52,6 +52,12 @@
     <Compile Include="frmAddFridgeItem.Designer.cs">
       <DependentUpon>frmAddFridgeItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmFoodItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFoodItems.Designer.cs">
+      <DependentUpon>frmFoodItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAddFridgeItem.resx">
       <DependentUpon>frmAddFridgeItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFoodItems.resx">
+      <DependentUpon>frmFoodItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

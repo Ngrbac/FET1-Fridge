@@ -39,5 +39,11 @@ namespace FridgeApp
         {
             controller.FillGrid(dsFridgeGrid);
         }
+
+        private void btnFoodItems_Click(object sender, EventArgs e)
+        {
+            var addFoodItems = new frmFoodItems(controller);
+            addFoodItems.ShowDialog();
+        }
     }
 }
