@@ -71,11 +71,11 @@
     <Compile Include="lib\Refrigerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecipeBook.cs">
+    <Compile Include="frmRecipeBook.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RecipeBook.Designer.cs">
-      <DependentUpon>RecipeBook.cs</DependentUpon>
+    <Compile Include="frmRecipeBook.Designer.cs">
+      <DependentUpon>frmRecipeBook.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="frmAddFridgeItem.resx">
       <DependentUpon>frmAddFridgeItem.cs</DependentUpon>
@@ -95,8 +95,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="RecipeBook.resx">
-      <DependentUpon>RecipeBook.cs</DependentUpon>
+    <EmbeddedResource Include="frmRecipeBook.resx">
+      <DependentUpon>frmRecipeBook.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

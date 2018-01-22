@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lib;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +11,15 @@ using System.Windows.Forms;
 
 namespace FridgeApp
 {
-    public partial class RecipeBook : Form
+    public partial class frmRecipeBook : Form
     {
-        public RecipeBook()
+        private Controller controller;
+        
+
+        public frmRecipeBook(Controller controller)
         {
             InitializeComponent();
+            this.controller = controller;
         }
 
         private void label1_Click(object sender, EventArgs e)

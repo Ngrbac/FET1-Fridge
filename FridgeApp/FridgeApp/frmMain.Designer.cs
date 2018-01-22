@@ -47,8 +47,7 @@
             this.lblSearch = new System.Windows.Forms.Label();
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.btnFoodItems = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnRecipeBook = new System.Windows.Forms.Button();
             this.gbFridgeItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFridgeGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fridgeDataBindingSource)).BeginInit();
@@ -210,31 +209,23 @@
             this.btnFoodItems.UseVisualStyleBackColor = true;
             this.btnFoodItems.Click += new System.EventHandler(this.btnFoodItems_Click);
             // 
-            // button2
+            // btnRecipeBook
             // 
-            this.button2.Location = new System.Drawing.Point(12, 68);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(277, 37);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(12, 111);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(277, 37);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnRecipeBook.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnRecipeBook.Location = new System.Drawing.Point(12, 68);
+            this.btnRecipeBook.Name = "btnRecipeBook";
+            this.btnRecipeBook.Size = new System.Drawing.Size(277, 37);
+            this.btnRecipeBook.TabIndex = 2;
+            this.btnRecipeBook.Text = "Recipe Book";
+            this.btnRecipeBook.UseVisualStyleBackColor = true;
+            this.btnRecipeBook.Click += new System.EventHandler(this.btnRecipeBook_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(897, 527);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnRecipeBook);
             this.Controls.Add(this.btnFoodItems);
             this.Controls.Add(this.gbFridgeItems);
             this.Name = "frmMain";
@@ -271,8 +262,7 @@
         private System.Data.DataColumn dataColumn4;
         private System.Windows.Forms.Button btnAddFridgeItem;
         private System.Windows.Forms.Button btnFoodItems;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnRecipeBook;
     }
 }
 

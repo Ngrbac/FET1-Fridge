@@ -55,5 +55,11 @@ namespace FridgeApp
         {
             populateGrid("");
         }
+
+        private void btnRecipeBook_Click(object sender, EventArgs e)
+        {
+            var addFoodItems = new frmRecipeBook(controller);
+            addFoodItems.ShowDialog();
+        }
     }
 }
