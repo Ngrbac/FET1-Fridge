@@ -30,7 +30,10 @@ namespace FridgeApp
             {
                 cbFoodItem.Items.Add(item);
             }
-
+            if (foodItems.Count == 0)
+            {
+                return;
+            }
             cbFoodItem.SelectedIndex = 0;
         }
 

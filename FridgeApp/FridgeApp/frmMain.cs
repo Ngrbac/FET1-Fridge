@@ -31,19 +31,29 @@ namespace FridgeApp
             var result = addFridgeItem.ShowDialog();
             if (result == DialogResult.OK)
             {
-                populateGrid();
+                populateGrid(tbSearch.Text);
             }
         }
 
-        private void populateGrid()
+        private void populateGrid(string filter)
         {
-            controller.FillGrid(dsFridgeGrid);
+            controller.FillFridgeGrid(dsFridgeGrid, filter);
         }
 
         private void btnFoodItems_Click(object sender, EventArgs e)
         {
             var addFoodItems = new frmFoodItems(controller);
             addFoodItems.ShowDialog();
+        }
+        
+        private void tbSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            populateGrid(tbSearch.Text);
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            populateGrid("");
         }
     }
 }

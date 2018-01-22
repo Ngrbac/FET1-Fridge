@@ -11,20 +11,35 @@ namespace FridgeApp
     public class Controller
     {
         private Refrigerator theFridge { get; set; }
-        private List<FoodItem> foodItemStorage { get; set; }
+        private Dictionary<string,FoodItem> foodItemStorage { get; set; }
         public Controller()
         {
             theFridge = new Refrigerator();
-            foodItemStorage = new List<FoodItem>();
+            foodItemStorage = new Dictionary<string, FoodItem>();
+            testData();
+        }
 
-            foodItemStorage.Add(new FoodItem());
-            foodItemStorage.Add(new FoodItem());
-            foodItemStorage.Add(new FoodItem());
+        private void testData()
+        {
+            AddItemToFridge(new FoodItem("Orange", 10, new Measurement("Kilo")), 3);
+            AddItemToFridge(new FoodItem("Apple", 11, new Measurement("Kilo")), 3);
+            AddItemToFridge(new FoodItem("Orange Juice", 2, new Measurement("Liters")), 2);
         }
 
         public List<FoodItem> GetAllFoodItems()
         {
-            return foodItemStorage;
+            List<FoodItem> result = new List<FoodItem>();
+            foreach (var item in foodItemStorage)
+            {
+                result.Add(item.Value);
+            }
+
+            return result;
+        }
+
+        public FoodItem GetFoodItemByName(string selectedItemName)
+        {
+            return foodItemStorage[selectedItemName];
         }
 
         public void AddItemToFridge(FoodItem item, decimal qty)
@@ -33,13 +48,40 @@ namespace FridgeApp
              
         }
 
-        public void FillGrid(DataSet dsFridgeGrid)
+        public void FillFridgeGrid(DataSet dsFridgeGrid, string filter)
         {
             dsFridgeGrid.Tables[0].Rows.Clear();
             foreach (var fridgeItem in theFridge.Items)
             {
-                dsFridgeGrid.Tables[0].Rows.Add(fridgeItem.FoodItem.Name, fridgeItem.Qty, fridgeItem.Measure.Name, fridgeItem.DaysRemaining());
+                if (fridgeItem.FoodItem.Name.ToUpper().Contains(filter.ToUpper()))
+                {
+                    dsFridgeGrid.Tables[0].Rows.Add(fridgeItem.FoodItem.Name, fridgeItem.Qty, fridgeItem.Measure.Name, fridgeItem.DaysRemaining());
+                }
             }
+        }
+
+        public void FillFoodItemGrid(DataSet dsFoodItems)
+        {
+            dsFoodItems.Tables[0].Rows.Clear();
+            foreach (var foodItem in foodItemStorage)
+            {
+                dsFoodItems.Tables[0].Rows.Add(foodItem.Value.Name, foodItem.Value.ExpirationDays, foodItem.Value.Measure);
+            }
+        }
+        
+        public bool AddFoodItem(string name, int expiresIn, Measurement measure)
+        {
+            if (foodItemStorage.ContainsKey(name))
+            {
+                return false;
+            }
+            foodItemStorage.Add(name, new FoodItem(name, expiresIn, measure));
+            return true;
+        }
+
+        public void DeleteFoodItem(string name)
+        {
+            foodItemStorage.Remove(name);
         }
     }
 }

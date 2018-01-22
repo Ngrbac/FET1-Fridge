@@ -45,7 +45,7 @@
             this.dataColumn3 = new System.Data.DataColumn();
             this.dataColumn4 = new System.Data.DataColumn();
             this.lblSearch = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbSearch = new System.Windows.Forms.TextBox();
             this.btnFoodItems = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -65,7 +65,7 @@
             this.gbFridgeItems.Controls.Add(this.btnAddFridgeItem);
             this.gbFridgeItems.Controls.Add(this.dgvFridgeGrid);
             this.gbFridgeItems.Controls.Add(this.lblSearch);
-            this.gbFridgeItems.Controls.Add(this.textBox1);
+            this.gbFridgeItems.Controls.Add(this.tbSearch);
             this.gbFridgeItems.Location = new System.Drawing.Point(307, 12);
             this.gbFridgeItems.Name = "gbFridgeItems";
             this.gbFridgeItems.Size = new System.Drawing.Size(578, 503);
@@ -188,15 +188,16 @@
             this.lblSearch.TabIndex = 1;
             this.lblSearch.Text = "Search:";
             // 
-            // textBox1
+            // tbSearch
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.tbSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox1.Location = new System.Drawing.Point(191, 27);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(381, 26);
-            this.textBox1.TabIndex = 0;
+            this.tbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.tbSearch.Location = new System.Drawing.Point(191, 27);
+            this.tbSearch.Name = "tbSearch";
+            this.tbSearch.Size = new System.Drawing.Size(381, 26);
+            this.tbSearch.TabIndex = 0;
+            this.tbSearch.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbSearch_KeyUp);
             // 
             // btnFoodItems
             // 
@@ -238,6 +239,7 @@
             this.Controls.Add(this.gbFridgeItems);
             this.Name = "frmMain";
             this.Text = "Refrigerator";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.gbFridgeItems.ResumeLayout(false);
             this.gbFridgeItems.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFridgeGrid)).EndInit();
@@ -255,7 +257,7 @@
         private System.Windows.Forms.DataGridView dgvFridgeGrid;
         private System.Data.DataSet dsFridgeGrid;
         private System.Windows.Forms.Label lblSearch;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn measureDataGridViewTextBoxColumn;
