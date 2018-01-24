@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace FridgeApp
 {
@@ -14,9 +15,23 @@ namespace FridgeApp
         private Dictionary<string,FoodItem> foodItemStorage { get; set; }
         public Controller()
         {
+            connectToDB();
             theFridge = new Refrigerator();
             foodItemStorage = new Dictionary<string, FoodItem>();
-            testData();
+            //testData();
+        }
+        
+        
+   
+        private void connectToDB()
+        {
+            DBLink.BuildConnString(@"THEBEAST\SQLEXPRESS", true, "", "", "Refrigerator2");
+            var res = DBLink.TryConnect();
+            if (!res)
+            {
+                MessageBox.Show("Unable to connect to db");
+            }
+            DBLink.TryDisconnect();
         }
 
         private void testData()
