@@ -48,6 +48,7 @@
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.btnFoodItems = new System.Windows.Forms.Button();
             this.btnRecipeBook = new System.Windows.Forms.Button();
+            this.btnMeasurement = new System.Windows.Forms.Button();
             this.gbFridgeItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFridgeGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fridgeDataBindingSource)).BeginInit();
@@ -220,11 +221,23 @@
             this.btnRecipeBook.UseVisualStyleBackColor = true;
             this.btnRecipeBook.Click += new System.EventHandler(this.btnRecipeBook_Click);
             // 
+            // btnMeasurement
+            // 
+            this.btnMeasurement.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnMeasurement.Location = new System.Drawing.Point(12, 111);
+            this.btnMeasurement.Name = "btnMeasurement";
+            this.btnMeasurement.Size = new System.Drawing.Size(277, 37);
+            this.btnMeasurement.TabIndex = 3;
+            this.btnMeasurement.Text = "Measurements";
+            this.btnMeasurement.UseVisualStyleBackColor = true;
+            this.btnMeasurement.Click += new System.EventHandler(this.btnMeasurement_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(897, 527);
+            this.Controls.Add(this.btnMeasurement);
             this.Controls.Add(this.btnRecipeBook);
             this.Controls.Add(this.btnFoodItems);
             this.Controls.Add(this.gbFridgeItems);
@@ -263,6 +276,7 @@
         private System.Windows.Forms.Button btnAddFridgeItem;
         private System.Windows.Forms.Button btnFoodItems;
         private System.Windows.Forms.Button btnRecipeBook;
+        private System.Windows.Forms.Button btnMeasurement;
     }
 }
 

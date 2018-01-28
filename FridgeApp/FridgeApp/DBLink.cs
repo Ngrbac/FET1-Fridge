@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,15 +12,18 @@ namespace FridgeApp
 {
     public static class DBLink
     {
-        public static string ConnectionString
+        public static string DbFile
         {
-            get { return ConnectionStringBuilder.ConnectionString; }
+            get { return Environment.CurrentDirectory + "\\SimpleDb.sqlite"; }
         }
 
-        private static SqlConnectionStringBuilder ConnectionStringBuilder = new SqlConnectionStringBuilder();
+        public static SQLiteConnection SimpleDbConnection()
+        {
+            return new SQLiteConnection("Data Source=" + DbFile);
+        }
 
-        private static SqlConnection sqlConnection = new SqlConnection();
-        public static SqlConnection SqlConnection
+        private static SQLiteConnection sqlConnection = new SQLiteConnection("Data Source=" + DbFile);
+        public static SQLiteConnection SqlConnection
         {
             get
             {
@@ -30,7 +34,7 @@ namespace FridgeApp
         public static bool TryConnect()
         {
             bool success = true;
-            sqlConnection.ConnectionString = ConnectionString;
+            
             try
             {
                 sqlConnection.Open();
@@ -62,19 +66,7 @@ namespace FridgeApp
             }
             return success;
         }
-
-        public static void BuildConnString(string datasource, bool integratedSecurity, string name, string pass, string initialCatalog)
-        {
-            ConnectionStringBuilder.DataSource = datasource;
-            ConnectionStringBuilder.IntegratedSecurity = integratedSecurity;
-            if (integratedSecurity)
-            {
-                ConnectionStringBuilder.UserID = name;
-                ConnectionStringBuilder.Password = pass;
-            }
-            ConnectionStringBuilder.InitialCatalog = initialCatalog;
-        }
-
+        
         public static int ExecuteSQL(string sql, dynamic param = null, IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null)
         {
             return SqlMapper.Execute(sqlConnection, sql, param, transaction, commandTimeout, commandType);
@@ -83,6 +75,11 @@ namespace FridgeApp
         public static IEnumerable<T> Query<T>(string sql, dynamic param = null, IDbTransaction transaction = null, int? commandTimeout = null, bool buffered = true, CommandType? commandType = null)
         {
             return SqlMapper.Query<T>(sqlConnection, sql, param, transaction, buffered, commandTimeout, commandType);
+        }
+
+        public static IEnumerable<dynamic> Query(string sql, dynamic param = null, IDbTransaction transaction = null, int? commandTimeout = null, bool buffered = true, CommandType? commandType = null)
+        {
+            return SqlMapper.Query(sqlConnection, sql, param, transaction, buffered, commandTimeout, commandType);
         }
     }
 }

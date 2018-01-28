@@ -61,5 +61,11 @@ namespace FridgeApp
             var addFoodItems = new frmRecipeBook(controller);
             addFoodItems.ShowDialog();
         }
+
+        private void btnMeasurement_Click(object sender, EventArgs e)
+        {
+            var measurements = new frmMeasurement(controller);
+            measurements.ShowDialog();
+        }
     }
 }

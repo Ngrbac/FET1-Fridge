@@ -8,13 +8,7 @@ namespace Lib
 		public int ExpirationDays;
 		public Measurement Measure;
        
-        public FoodItem()
-		{
-            Name = "Orange";
-            ExpirationDays = 10;
-            Measure = new Measurement("Pieces");
-		}
-
+       
         public FoodItem(string name, int expiresIn, Measurement measure)
         {
             Name = name;
@@ -25,6 +19,11 @@ namespace Lib
         public override string ToString()
         {
             return Name;
+        }
+
+        internal void Save()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -13,11 +13,13 @@ namespace FridgeApp
     {
         private Refrigerator theFridge { get; set; }
         private Dictionary<string,FoodItem> foodItemStorage { get; set; }
+        private Dictionary<string,Measurement> measurementStorage { get; set; }
         public Controller()
         {
             connectToDB();
             theFridge = new Refrigerator();
             foodItemStorage = new Dictionary<string, FoodItem>();
+            loadMeasurements();
             //testData();
         }
         
@@ -25,8 +27,27 @@ namespace FridgeApp
    
         private void connectToDB()
         {
-            DBLink.BuildConnString(@"THEBEAST\SQLEXPRESS", true, "", "", "Refrigerator2");
             var res = DBLink.TryConnect();
+
+            string sqlMeasurement = @"
+CREATE TABLE IF NOT EXISTS Measurement 
+(
+    ID          INTEGER PRIMARY KEY,
+    Name        NVARCHAR(50) NOT NULL,
+    ShortName   NVARCHAR(5) NOT NULL
+)";
+            string sqlFoodItem = @"
+CREATE TABLE IF NOT EXISTS FoodItem
+(
+    ID              INTEGER PRIMARY KEY,
+    Name            NVARCHAR(50) NOT NULL,
+    ExpirationDays  INTEGER NOT NULL,
+    Measure         INTEGER NOT NULL,
+    FOREIGN KEY (Measure) REFERENCES Measurement (ID)
+)
+";
+            DBLink.ExecuteSQL(sqlMeasurement);
+            DBLink.ExecuteSQL(sqlFoodItem);
             if (!res)
             {
                 MessageBox.Show("Unable to connect to db");
@@ -34,11 +55,51 @@ namespace FridgeApp
             DBLink.TryDisconnect();
         }
 
-        private void testData()
+        public bool AddMeasurement(string name, string shortname)
         {
-            AddItemToFridge(new FoodItem("Orange", 10, new Measurement("Kilo")), 3);
-            AddItemToFridge(new FoodItem("Apple", 11, new Measurement("Kilo")), 3);
-            AddItemToFridge(new FoodItem("Orange Juice", 2, new Measurement("Liters")), 2);
+            if (measurementStorage.ContainsKey(name))
+            {
+                return false;
+            }
+            var measure = new Measurement(name, shortname);
+            measurementStorage.Add(name, measure);
+            measure.Save();
+            return true;
+        }
+
+        public void FillMeasurementGrid(DataSet dsMeasurement)
+        {
+            dsMeasurement.Tables[0].Rows.Clear();
+            foreach (var measurement in measurementStorage)
+            {
+                dsMeasurement.Tables[0].Rows.Add(measurement.Value.Name, measurement.Value.Shortname);
+            }
+        }
+
+        internal void UpdateFoodItem(string oldName, string name, string expiresIn, object measure)
+        {
+            var selectedItem = foodItemStorage[oldName];
+            selectedItem.Name = name;
+            selectedItem.ExpirationDays = Convert.ToInt32(expiresIn);
+            selectedItem.Measure = (Measurement)measure;
+            selectedItem.Save();
+            foodItemStorage.Remove(oldName);
+            foodItemStorage.Add(name, selectedItem);
+        }
+
+        internal void UpdateMeasurement(string oldName, string name, string shortName)
+        {
+            var selectedItem = measurementStorage[oldName];
+            selectedItem.Name = name;
+            selectedItem.Shortname = shortName;
+            selectedItem.Save();
+            measurementStorage.Remove(oldName);
+            measurementStorage.Add(name, selectedItem);
+        }
+
+        public Measurement GetMeasurement(string name)
+        {
+            return measurementStorage[name];
         }
 
         public List<FoodItem> GetAllFoodItems()
@@ -55,6 +116,12 @@ namespace FridgeApp
         public FoodItem GetFoodItemByName(string selectedItemName)
         {
             return foodItemStorage[selectedItemName];
+        }
+
+        public void DeleteMeasurement(string name)
+        {
+            measurementStorage[name].Delete();
+            measurementStorage.Remove(name);            
         }
 
         public void AddItemToFridge(FoodItem item, decimal qty)
@@ -97,6 +164,35 @@ namespace FridgeApp
         public void DeleteFoodItem(string name)
         {
             foodItemStorage.Remove(name);
+        }
+
+        public List<Measurement> GetMeasurements()
+        {
+            var measurementList = new List<Measurement>();
+            foreach (var measure in measurementStorage)
+            {
+                measurementList.Add(measure.Value);
+            }
+            return measurementList;
+        }
+
+        private void loadMeasurements()
+        {
+            measurementStorage = new Dictionary<string, Measurement>();
+
+            if (!DBLink.TryConnect())
+            {
+                MessageBox.Show("Cannot connect to the db");
+                return;
+            }
+            var sql = "SELECT ID, Name, ShortName FROM Measurement";
+            var values = DBLink.Query(sql);
+            foreach (var value in values)
+            {
+                var measurement = new Measurement(value.ID, value.Name, value.ShortName);
+                measurementStorage.Add(measurement.Name, measurement);
+            }
+            DBLink.TryDisconnect();
         }
     }
 }

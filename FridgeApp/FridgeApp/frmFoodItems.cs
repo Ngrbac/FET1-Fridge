@@ -78,10 +78,8 @@ namespace FridgeApp
                 MessageBox.Show("ExpiresIn is not a number.");
                 return false;
             }
-
-            selectedItem.Name = name;
-            selectedItem.ExpirationDays = Convert.ToInt32(expiresIn);
-            selectedItem.Measure = (Measurement)measure;
+            controller.UpdateFoodItem(selectedItem.Name, name, expiresIn, measure);
+            
 
             return true;
         }
@@ -160,9 +158,10 @@ namespace FridgeApp
         }
         private void frmFoodItems_Load(object sender, EventArgs e)
         {
-            cbMeasure.Items.Add(new Measurement("Kilogram"));
-            cbMeasure.Items.Add(new Measurement("Liter"));
-            cbMeasure.Items.Add(new Measurement("Piece"));
+            foreach (var measure in controller.GetMeasurements())
+            {
+                cbMeasure.Items.Add(measure);
+            }
 
             cbMeasure.SelectedIndex = 0;
         }
