@@ -12,25 +12,12 @@ namespace Lib
 			
 		}
 
-		public void AddItem(FoodItem item, decimal qty, Measurement measure)
-		{
-			FridgeItem food = new FridgeItem(item, qty, measure, DateTime.Now, item.ExpirationDays);
-			Items.Add(food);
-		}
-
 		public void AddItem(FoodItem item, decimal qty)
 		{
 			FridgeItem food = new FridgeItem(item, qty, DateTime.Now, item.ExpirationDays);
 			Items.Add(food);
 		}
-
-		public void AddItem(FoodItem item, decimal qty, Measurement measure, int daysRemaining)
-		{
-			FridgeItem food = new FridgeItem(item, qty, measure, DateTime.Now, daysRemaining);
-			Items.Add(food);
-
-		}
-
+        
 		public void AddItem(FoodItem item, decimal qty, int daysRemaining)
 		{
 			FridgeItem food = new FridgeItem(item, qty, DateTime.Now, daysRemaining);

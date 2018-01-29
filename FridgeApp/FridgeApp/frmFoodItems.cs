@@ -69,7 +69,7 @@ namespace FridgeApp
 
             if (String.IsNullOrWhiteSpace(name))
             {
-                MessageBox.Show("Name cannot be empty.");
+                MessageBox.Show("Name cannot be empty.");                
                 return false;
             }
 
@@ -102,7 +102,7 @@ namespace FridgeApp
                 return false;
             }                     
 
-            var addSuccessful = controller.AddFoodItem(name, Convert.ToInt32(expiresIn), (Measurement)measure);
+            var addSuccessful = controller.AddFoodItem(name, Convert.ToInt64(expiresIn), (Measurement)measure);
 
             if (!addSuccessful)
             {
@@ -158,11 +158,11 @@ namespace FridgeApp
         }
         private void frmFoodItems_Load(object sender, EventArgs e)
         {
+            populateGrid();
             foreach (var measure in controller.GetMeasurements())
             {
                 cbMeasure.Items.Add(measure);
-            }
-
+            }            
             cbMeasure.SelectedIndex = 0;
         }
 

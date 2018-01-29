@@ -59,7 +59,7 @@ namespace Lib
                 "WHERE  ID = @ID";
             DynamicParameters parameter = new DynamicParameters();
 
-            parameter.Add("@ID", ID, DbType.Int32, ParameterDirection.Input);
+            parameter.Add("@ID", ID, DbType.Int64, ParameterDirection.Input);
             parameter.Add("@Name", Name, DbType.String, ParameterDirection.Input);
             parameter.Add("@Shortname", Shortname, DbType.String, ParameterDirection.Input);
             //parameter.Add("@RowCount", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
