@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace FridgeApp
 {
-    public static class DBLink
+    public static class DBLink                                                                                     //sluzi za povezivanje sa bazom
     {
         public static string DbFile
         {
@@ -41,7 +41,7 @@ namespace FridgeApp
             }
             catch (Exception)
             {
-                //TODO add handle-able exceptions
+                //nema handlera :(
                 success = false;
             }
             return success;
@@ -61,7 +61,7 @@ namespace FridgeApp
             }
             catch (Exception)
             {
-                //TODO add handle-able exceptions
+               //nema handlera :(
                 success = false;
             }
             return success;

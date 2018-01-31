@@ -12,6 +12,8 @@ namespace Lib
         public DateTime TimeAdded;
         public long DaysRemainOnAdd;
 
+        //konstruktori
+
         public FridgeItem(FoodItem item, decimal qty, DateTime timeAdded, long daysRemaining) : base(item, qty)
         { 
             TimeAdded = timeAdded;
@@ -23,7 +25,7 @@ namespace Lib
             TimeAdded = timeAdded;
             DaysRemainOnAdd = daysRemaining;
         }
-
+        //izracun preostalih dana za izmjene
         public long DaysRemaining()
         {
             var daysElapsed = DateTime.Now - TimeAdded;
@@ -39,11 +41,32 @@ namespace Lib
             else
             {
                 update();
-            }
-            
-
+            }    
         }
+        private void insert()
+        {
+            if (!DBLink.TryConnect())
+            {
+                MessageBox.Show("Cannot connect to the db");
+                return;
+            }
 
+            string sql = "" +
+                "INSERT INTO FridgeItem (FoodItemID, Qty, TimeAdded, DaysRemainOnAdd )" + Environment.NewLine +
+                "VALUES (@FoodItemID, @Qty, @TimeAdded, @DaysRemainOnAdd)";
+
+            DynamicParameters parameter = new DynamicParameters();
+
+            parameter.Add("@FoodItemID", FoodItem.ID, DbType.String, ParameterDirection.Input);
+            parameter.Add("@Qty", Qty, DbType.Decimal, ParameterDirection.Input);
+            parameter.Add("@TimeAdded", TimeAdded, DbType.Date, ParameterDirection.Input);
+            parameter.Add("@DaysRemainOnAdd", DaysRemainOnAdd, DbType.Int64, ParameterDirection.Input);
+            DBLink.ExecuteSQL(sql, parameter);
+
+            ID = DBLink.Query<int>("SELECT last_insert_rowid() AS ID").First();
+
+            DBLink.TryDisconnect();
+        }
         private void update()
         {
             if (!DBLink.TryConnect())
@@ -72,30 +95,7 @@ namespace Lib
             DBLink.TryDisconnect();
         }
 
-        private void insert()
-        {
-            if (!DBLink.TryConnect())
-            {
-                MessageBox.Show("Cannot connect to the db");
-                return;
-            }
-
-            string sql = "" +
-                "INSERT INTO FridgeItem (FoodItemID, Qty, TimeAdded, DaysRemainOnAdd )" + Environment.NewLine +
-                "VALUES (@FoodItemID, @Qty, @TimeAdded, @DaysRemainOnAdd)";
-
-            DynamicParameters parameter = new DynamicParameters();
-
-            parameter.Add("@FoodItemID", FoodItem.ID, DbType.String, ParameterDirection.Input);
-            parameter.Add("@Qty", Qty, DbType.Decimal, ParameterDirection.Input);
-            parameter.Add("@TimeAdded", TimeAdded, DbType.Date, ParameterDirection.Input);
-            parameter.Add("@DaysRemainOnAdd", DaysRemainOnAdd, DbType.Int64, ParameterDirection.Input);
-            DBLink.ExecuteSQL(sql, parameter);
-
-            ID = DBLink.Query<int>("SELECT last_insert_rowid() AS ID").First();
-
-            DBLink.TryDisconnect();
-        }
+        
 
         public void SetRemainingDays(long daysRemaining)
         {

@@ -61,8 +61,10 @@
             this.lblQuantity = new System.Windows.Forms.Label();
             this.tbQuantity = new System.Windows.Forms.TextBox();
             this.dgvIngredients = new System.Windows.Forms.DataGridView();
-            this.Measure = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IngredientID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ingredientDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Measure = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ingredientsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bsIngredients = new System.Windows.Forms.BindingSource(this.components);
             this.dsIngredients = new System.Data.DataSet();
@@ -72,8 +74,6 @@
             this.dataColumn7 = new System.Data.DataColumn();
             this.dataColumn8 = new System.Data.DataColumn();
             this.ingredientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ingredientDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbRecipes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecipes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.recipesBindingSource)).BeginInit();
@@ -395,13 +395,6 @@
             this.dgvIngredients.Size = new System.Drawing.Size(369, 442);
             this.dgvIngredients.TabIndex = 0;
             // 
-            // Measure
-            // 
-            this.Measure.DataPropertyName = "Measure";
-            this.Measure.HeaderText = "Measure";
-            this.Measure.Name = "Measure";
-            this.Measure.ReadOnly = true;
-            // 
             // IngredientID
             // 
             this.IngredientID.DataPropertyName = "ID";
@@ -409,6 +402,28 @@
             this.IngredientID.Name = "IngredientID";
             this.IngredientID.ReadOnly = true;
             this.IngredientID.Visible = false;
+            // 
+            // ingredientDataGridViewTextBoxColumn
+            // 
+            this.ingredientDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ingredientDataGridViewTextBoxColumn.DataPropertyName = "Ingredient";
+            this.ingredientDataGridViewTextBoxColumn.HeaderText = "Ingredient";
+            this.ingredientDataGridViewTextBoxColumn.Name = "ingredientDataGridViewTextBoxColumn";
+            this.ingredientDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // Measure
+            // 
+            this.Measure.DataPropertyName = "Measure";
+            this.Measure.HeaderText = "Measure";
+            this.Measure.Name = "Measure";
+            this.Measure.ReadOnly = true;
+            // 
+            // quantityDataGridViewTextBoxColumn
+            // 
+            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
+            this.quantityDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // ingredientsBindingSource1
             // 
@@ -457,21 +472,6 @@
             // 
             this.ingredientsBindingSource.DataMember = "Ingredients";
             this.ingredientsBindingSource.DataSource = this.bsIngredients;
-            // 
-            // quantityDataGridViewTextBoxColumn
-            // 
-            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
-            this.quantityDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // ingredientDataGridViewTextBoxColumn
-            // 
-            this.ingredientDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ingredientDataGridViewTextBoxColumn.DataPropertyName = "Ingredient";
-            this.ingredientDataGridViewTextBoxColumn.HeaderText = "Ingredient";
-            this.ingredientDataGridViewTextBoxColumn.Name = "ingredientDataGridViewTextBoxColumn";
-            this.ingredientDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // frmRecipeBook
             // 

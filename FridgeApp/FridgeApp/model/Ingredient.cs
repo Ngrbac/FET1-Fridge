@@ -13,6 +13,8 @@ namespace Lib
     public class Ingredient: MeasuredItem 
     {
         public Recipe Recipe { get; set; }       //potrebno radi konstruktora i baze
+
+        //konstruktori
         public Ingredient(Recipe parent, FoodItem item, decimal qty):base(item, qty)
         {
             this.Recipe = parent;
@@ -23,6 +25,7 @@ namespace Lib
             this.Recipe = parent;
         }
 
+        //Spremanje
         public void Save()
         {
             if (ID == -1)
@@ -34,7 +37,31 @@ namespace Lib
                 update();
             }            
         }
+        // ubacivanje novih sastojaka
+        private void insert()
+        {
+            if (!DBLink.TryConnect())
+            {
+                MessageBox.Show("Cannot connect to the db");
+                return;
+            }
 
+            string sql = "" +
+                "INSERT INTO Ingredients (FoodItemID, RecipeID, Qty)" + Environment.NewLine +
+                "VALUES (@FoodItemID, @RecipeID, @Qty)";
+
+            DynamicParameters parameter = new DynamicParameters();
+
+            parameter.Add("@FoodItemID", FoodItem.ID, DbType.Int64, ParameterDirection.Input);
+            parameter.Add("@Qty", Qty, DbType.Decimal, ParameterDirection.Input);
+            parameter.Add("@RecipeID", Recipe.ID, DbType.Int64, ParameterDirection.Input);
+            DBLink.ExecuteSQL(sql, parameter);
+
+            ID = DBLink.Query<int>("SELECT last_insert_rowid() AS ID").First();
+
+            DBLink.TryDisconnect();
+        }
+        //azuriranje
         private void update()
         {
             if (!DBLink.TryConnect())
@@ -61,32 +88,8 @@ namespace Lib
             ID = DBLink.Query<int>("SELECT last_insert_rowid() AS ID").First();
 
             DBLink.TryDisconnect();
-        }
-
-        private void insert()
-        {
-            if (!DBLink.TryConnect())
-            {
-                MessageBox.Show("Cannot connect to the db");
-                return;
-            }
-
-            string sql = "" +
-                "INSERT INTO Ingredients (FoodItemID, RecipeID, Qty)" + Environment.NewLine +
-                "VALUES (@FoodItemID, @RecipeID, @Qty)";
-
-            DynamicParameters parameter = new DynamicParameters();
-
-            parameter.Add("@FoodItemID", FoodItem.ID, DbType.Int64, ParameterDirection.Input);
-            parameter.Add("@Qty", Qty, DbType.Decimal, ParameterDirection.Input);
-            parameter.Add("@RecipeID", Recipe.ID, DbType.Int64, ParameterDirection.Input);
-            DBLink.ExecuteSQL(sql, parameter);
-
-            ID = DBLink.Query<int>("SELECT last_insert_rowid() AS ID").First();
-
-            DBLink.TryDisconnect();
-        }
-
+        }        
+        //brisanje
         public void Delete()
         {
             if (!DBLink.TryConnect())

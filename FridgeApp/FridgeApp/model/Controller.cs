@@ -17,47 +17,13 @@ namespace FridgeApp
         private Dictionary<string, Measurement> measurementStorage { get; set; }
         public Controller()
         {
-            connectToDB();
-            fridge = new List<FridgeItem>();
-            foodItemStorage = new Dictionary<string, FoodItem>();
+            connectToDB();            
             loadMeasurements();
             loadFoodItems();
             loadFridgeItems();
-            loadRecipeBook();   //popping errors on dem hoes       
-        }
-
-       
-
-        public Recipe GetRecipeByID(long recipeID)                                               //dohvaćanje recepta na temlelju IDa
-        {
-            foreach (var recipe in recipeBook)
-            {
-                if (recipe.ID == recipeID)
-                {
-                    return recipe;
-                }
-            }
-            return null;
-        }
-
-        public void AddRecipeToRecipeBook(string name, long cookTime, string desc)               //dodavanje recepata u knjigu recepata - funkcija
-        {
-            var recipe = new Recipe(name, cookTime, desc);
-            recipe.Save();
-            recipeBook.Add(recipe);
-          
-        }
-
-        public void FillRecipeGrid(DataSet dsRecipes)                                            //punjenje tablice recepata
-        {
-            dsRecipes.Tables[0].Rows.Clear();
-            foreach (var recipe in recipeBook)
-            {
-                dsRecipes.Tables[0].Rows.Add(recipe.Name, recipe.CookTime, recipe.Description, recipe.ID);            
-            }
-        }
-
-        // DB connection part
+            loadRecipeBook();   
+        }        
+        // Dio sa konekcijama na bazu
         #region Database
         private void connectToDB()
         {
@@ -215,7 +181,7 @@ CREATE TABLE IF NOT EXISTS Ingredients
             DBLink.TryDisconnect();
         }
         #endregion 
-        // Measurement part
+        // Dio o mjerama
         #region Measurement
 
         public bool AddMeasurement(string name, string shortname)                             //dodavanje nove mjere
@@ -282,10 +248,8 @@ CREATE TABLE IF NOT EXISTS Ingredients
             return measurementList;
         }
 
-        #endregion
-
-
-        // Food Item part
+        #endregion        
+        // Dio o food itemima
         #region FoodItem
         private FoodItem GetFoodItemByID(long foodItemID)                                             //dohvat itema po IDu
         {
@@ -364,9 +328,38 @@ CREATE TABLE IF NOT EXISTS Ingredients
         }
 
         #endregion
+        // Dio o knjizi recepata
+        #region Recipe book
+        public Recipe GetRecipeByID(long recipeID)                                               //dohvaćanje recepta na temlelju IDa
+        {
+            foreach (var recipe in recipeBook)
+            {
+                if (recipe.ID == recipeID)
+                {
+                    return recipe;
+                }
+            }
+            return null;
+        }
 
+        public void AddRecipeToRecipeBook(string name, long cookTime, string desc)               //dodavanje recepata u knjigu recepata - funkcija
+        {
+            var recipe = new Recipe(name, cookTime, desc);
+            recipe.Save();
+            recipeBook.Add(recipe);
+          
+        }
 
-        // Fridge Item part
+        public void FillRecipeGrid(DataSet dsRecipes)                                            //punjenje tablice recepata
+        {
+            dsRecipes.Tables[0].Rows.Clear();
+            foreach (var recipe in recipeBook)
+            {
+                dsRecipes.Tables[0].Rows.Add(recipe.Name, recipe.CookTime, recipe.Description, recipe.ID);            
+            }
+        }
+        #endregion
+        // Dio o friziderskim stvarima
         #region FridgeItem
 
         public void AddItemToFridge(FoodItem item, decimal qty, long daysRemainingOnAdd)
