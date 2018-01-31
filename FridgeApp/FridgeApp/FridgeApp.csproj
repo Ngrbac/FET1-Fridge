@@ -76,12 +76,6 @@
   <ItemGroup>
     <Compile Include="model\Controller.cs" />
     <Compile Include="model\DBLink.cs" />
-    <Compile Include="Forms\frmAddFridgeItem.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmAddFridgeItem.Designer.cs">
-      <DependentUpon>frmAddFridgeItem.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\frmFoodItems.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,9 +109,6 @@
     <Compile Include="Forms\frmRecipeBook.Designer.cs">
       <DependentUpon>frmRecipeBook.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Forms\frmAddFridgeItem.resx">
-      <DependentUpon>frmAddFridgeItem.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmFoodItems.resx">
       <DependentUpon>frmFoodItems.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,6 +131,8 @@
       <DependentUpon>frmRecipeBook.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram3.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -37,14 +37,14 @@
             this.tbShortname = new System.Windows.Forms.TextBox();
             this.tbName = new System.Windows.Forms.TextBox();
             this.dgvMeasurement = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.shortnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.measurementBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bsMeasurement = new System.Windows.Forms.BindingSource(this.components);
             this.dsMeasurement = new System.Data.DataSet();
             this.Measurement = new System.Data.DataTable();
             this.dataColumn1 = new System.Data.DataColumn();
             this.dataColumn2 = new System.Data.DataColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.shortnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMeasurement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.measurementBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsMeasurement)).BeginInit();
@@ -142,6 +142,22 @@
             this.dgvMeasurement.Size = new System.Drawing.Size(258, 184);
             this.dgvMeasurement.TabIndex = 10;
             // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // shortnameDataGridViewTextBoxColumn
+            // 
+            this.shortnameDataGridViewTextBoxColumn.DataPropertyName = "Shortname";
+            this.shortnameDataGridViewTextBoxColumn.HeaderText = "Shortname";
+            this.shortnameDataGridViewTextBoxColumn.Name = "shortnameDataGridViewTextBoxColumn";
+            this.shortnameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.shortnameDataGridViewTextBoxColumn.Width = 60;
+            // 
             // measurementBindingSource
             // 
             this.measurementBindingSource.DataMember = "Measurement";
@@ -173,22 +189,6 @@
             // 
             this.dataColumn2.ColumnName = "Shortname";
             // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // shortnameDataGridViewTextBoxColumn
-            // 
-            this.shortnameDataGridViewTextBoxColumn.DataPropertyName = "Shortname";
-            this.shortnameDataGridViewTextBoxColumn.HeaderText = "Shortname";
-            this.shortnameDataGridViewTextBoxColumn.Name = "shortnameDataGridViewTextBoxColumn";
-            this.shortnameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.shortnameDataGridViewTextBoxColumn.Width = 60;
-            // 
             // frmMeasurement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -203,7 +203,7 @@
             this.Controls.Add(this.tbName);
             this.Controls.Add(this.dgvMeasurement);
             this.Name = "frmMeasurement";
-            this.Text = "frmMeasurement";
+            this.Text = "Add new measurement";
             this.Load += new System.EventHandler(this.frmMeasurement_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMeasurement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.measurementBindingSource)).EndInit();

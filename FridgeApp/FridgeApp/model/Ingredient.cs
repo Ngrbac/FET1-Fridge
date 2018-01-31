@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Lib
 {
-    public class Ingredient: MeasuredItem
+    public class Ingredient: MeasuredItem 
     {
-        public Recipe Recipe { get; set; }
+        public Recipe Recipe { get; set; }       //potrebno radi konstruktora i baze
         public Ingredient(Recipe parent, FoodItem item, decimal qty):base(item, qty)
         {
             this.Recipe = parent;
@@ -47,7 +47,7 @@ namespace Lib
                 "UPDATE Ingredients " + Environment.NewLine +
                 "SET    FoodItemID = @FoodItemID, " + Environment.NewLine +
                 "       RecipeID = @RecipeID," + Environment.NewLine +
-                "       Qty = @Qty, " + Environment.NewLine +
+                "       Qty = @Qty " + Environment.NewLine +
                 "WHERE  ID = @ID";
 
             DynamicParameters parameter = new DynamicParameters();
@@ -57,6 +57,8 @@ namespace Lib
             parameter.Add("@RecipeID", Recipe.ID, DbType.Int64, ParameterDirection.Input);
             parameter.Add("@ID", ID, DbType.Int64, ParameterDirection.Input);
             DBLink.ExecuteSQL(sql, parameter);
+
+            ID = DBLink.Query<int>("SELECT last_insert_rowid() AS ID").First();
 
             DBLink.TryDisconnect();
         }

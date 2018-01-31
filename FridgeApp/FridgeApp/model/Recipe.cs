@@ -41,15 +41,21 @@ namespace Lib
             if (ID == -1)
             {
                 insert();
+                
             }
             else
             {
                 update();
             }
         }
-        
+
         public void AddIngredient(FoodItem item, decimal qty)
         {
+            if (ID == -1)
+            {
+                MessageBox.Show("Please save the  recipe first");
+                return;
+            }
             var newIngredient = new Ingredient(this, item, qty);
             Ingredients.Add(newIngredient);
             newIngredient.Save();
@@ -62,7 +68,7 @@ namespace Lib
             removeIng.Delete();
         }
 
-        private Ingredient GetIngredientByID(long id)
+        public Ingredient GetIngredientByID(long id)
         {
             foreach (var ingredient in Ingredients)
             {
@@ -96,7 +102,9 @@ namespace Lib
             parameter.Add("@CookTime", CookTime, DbType.Int64, ParameterDirection.Input);
             parameter.Add("@Desc", Description, DbType.String, ParameterDirection.Input);
             DBLink.ExecuteSQL(sql, parameter);
-            
+
+            ID = DBLink.Query<int>("SELECT last_insert_rowid() AS ID").First();
+
             DBLink.TryDisconnect();
         }
 
@@ -126,6 +134,11 @@ namespace Lib
 
         public void Delete()
         {
+            foreach (var ingredient in Ingredients)
+            {
+                ingredient.Delete();
+            }
+
             if (!DBLink.TryConnect())
             {
                 MessageBox.Show("Cannot connect to the db");
@@ -133,7 +146,7 @@ namespace Lib
             }
 
             string sql = "" +
-                "DELETE FROM Recipe" + Environment.NewLine +
+                "DELETE FROM Recipe " + Environment.NewLine +
                 "WHERE ID = @ID";
             
             DynamicParameters parameter = new DynamicParameters();

@@ -22,44 +22,18 @@ namespace FridgeApp
             InitializeComponent();
             controller = new Controller();
         }
-
-        private void btnAddFridgeItem_Click(object sender, EventArgs e)
-        {
-            //var item = new FoodItem();
-            //controller.AddItemToFridge(item, 10);
-            //populateGrid();
-
-            var addFridgeItem = new frmAddFridgeItem(controller);
-            var result = addFridgeItem.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                populateGrid(tbSearch.Text);
-            }
-        }
-
-        private void populateGrid(string filter)
-        {
-            controller.FillFridgeGrid(dsFridgeItems, filter);
-        }
-
-        private void btnFoodItems_Click(object sender, EventArgs e)
-        {
-            var addFoodItems = new frmFoodItems(controller);
-            addFoodItems.ShowDialog();
-            loadCbFoodItems();
-        }
-        
-        private void tbSearch_KeyUp(object sender, KeyEventArgs e)
-        {
-            populateGrid(tbSearch.Text);
-        }
-
+        //Izvršava ove funkcije pri pokretanju prozora
         private void frmMain_Load(object sender, EventArgs e)
         {
             populateGrid("");
             loadCbFoodItems();
         }
-
+        //Popunjava tablicu tablicu sa podacima iz dataseta uz filtriranje iz searcha
+        private void populateGrid(string filter)
+        {
+            controller.FillFridgeGrid(dsFridgeItems, filter);
+        }
+        //Puni combobox sa food itemima
         private void loadCbFoodItems()
         {
             var foodItems = controller.GetAllFoodItems();
@@ -73,32 +47,58 @@ namespace FridgeApp
                 return;
             }
             cbFoodItem.SelectedIndex = 0;
+        }       
+        //Funkcija koja dodaje novu stvar u frizider
+        private void insertFridgeItem()
+        {
+            controller.AddItemToFridge((FoodItem)cbFoodItem.SelectedItem, Convert.ToDecimal(tbQty.Text), Convert.ToInt64(tbDaysRemaining.Text));
+        }
+        // Ažurira stvar u frižideru
+        private void updateFridgeItem()
+        {
+            selectedItem.FoodItem = (FoodItem)cbFoodItem.SelectedItem;
+            selectedItem.Qty = Convert.ToDecimal(tbQty.Text);
+            selectedItem.SetRemainingDays(Convert.ToInt64(tbDaysRemaining.Text));
+            selectedItem.Save();
         }
 
+
+        // Dugmad
+        #region Buttons
+
+        //Dugmad menija
+        private void btnFoodItems_Click(object sender, EventArgs e)
+        {
+            var addFoodItems = new frmFoodItems(controller);
+            addFoodItems.ShowDialog();
+            loadCbFoodItems();
+        }
+        private void btnMeasurement_Click(object sender, EventArgs e)
+        {
+            var measurements = new frmMeasurement(controller);
+            measurements.ShowDialog();
+        }
         private void btnRecipeBook_Click(object sender, EventArgs e)
         {
             var addFoodItems = new frmRecipeBook(controller);
             addFoodItems.ShowDialog();
         }
 
-        private void btnMeasurement_Click(object sender, EventArgs e)
-        {
-            var measurements = new frmMeasurement(controller);
-            measurements.ShowDialog();
-        }
+        //Dugmad za upravljanje stvarima
 
+            //
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!isDecimal(tbQty.Text))
-            {
-                MessageBox.Show("Please enter a decimal for the Quantity");
-                return;
-            }
-            if (!isNumber(tbDaysRemaining.Text))
-            {
-                MessageBox.Show("Please enter a number for the Days remaining");
-                return;
-            }
+            if (!isDecimal(tbQty.Text))                                                  //
+            {                                                                            //
+                MessageBox.Show("Please enter a decimal for the Quantity");              //    Provjera da su upisani podaci ispravni za pohranu
+                return;                                                                  //
+            }                                                                            //
+            if (!isNumber(tbDaysRemaining.Text))                                         //    Ako nisu, skače obavijest
+            {                                                                            //
+                MessageBox.Show("Please enter a number for the Days remaining");         //
+                return;                                                                  //
+            }                                                                            //
             if (selectedItem != null)
             {
                 updateFridgeItem();
@@ -108,18 +108,45 @@ namespace FridgeApp
             {
                 insertFridgeItem();
             }
-            cbFoodItem.SelectedIndex = 0;
-            tbDaysRemaining.Text = "";
-            tbQty.Text = "";
+            
+            cbFoodItem.SelectedIndex = 0;              // Prazni polja, odnosno vraca na početno stanje
+            tbDaysRemaining.Text = "";                 //
+            tbQty.Text = "";                           //
+            populateGrid(tbSearch.Text);               // Puni tablicu sa novim stanjem
+        }
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            long id = (long)dgvFridgeGrid.SelectedRows[0].Cells[4].Value;
+            selectedItem = controller.GetFridgeItem(id);
+            if (selectedItem != null)
+            {
+                cbFoodItem.SelectedItem = selectedItem.FoodItem;                       // Postavlja polja unosa na vrijednosti iz odabranog itema
+                tbQty.Text = selectedItem.Qty.ToString();                              //
+                tbDaysRemaining.Text = selectedItem.DaysRemaining().ToString();        //
+            }
+        }
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            long id = (long)dgvFridgeGrid.SelectedRows[0].Cells[4].Value;              // (long) - kastanje, iza longa: odabir točne ćelije iz datagridviewa
+            controller.DeleteFridgeItem(id);
             populateGrid(tbSearch.Text);
         }
+        #endregion
 
+
+        
+
+        
+        //Pomocne metode
+        private void cbFoodItem_SelectedIndexChanged(object sender, EventArgs e)       //postavlja u preostale dane vrijednost iz baze
+        {
+            tbDaysRemaining.Text = ((FoodItem)cbFoodItem.SelectedItem).ExpirationDays.ToString();
+        }    
         private bool isNumber(string input)
         {
             var decimalSeparator = Convert.ToChar(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
             return isDecimal(input) && !input.Contains(decimalSeparator);
-        }
-
+        }                                         //provjera da li je nešto broj (broj dana)
         private bool isDecimal(string input)
         {
             if (input == "")
@@ -182,43 +209,11 @@ namespace FridgeApp
                 return false;
             }
             return true;
-        }
-
-        private void insertFridgeItem()
+        }                                        //provjera je li nesto decimal (količina)
+        private void tbSearch_KeyUp(object sender, KeyEventArgs e)
         {
-            controller.AddItemToFridge((FoodItem)cbFoodItem.SelectedItem, Convert.ToDecimal(tbQty.Text), Convert.ToInt64(tbDaysRemaining.Text));
-        }
-
-        private void updateFridgeItem()
-        {
-            selectedItem.FoodItem = (FoodItem)cbFoodItem.SelectedItem;
-            selectedItem.Qty = Convert.ToDecimal(tbQty.Text);
-            selectedItem.SetRemainingDays(Convert.ToInt64(tbDaysRemaining.Text));
-            selectedItem.Save();
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            long id = (long)dgvFridgeGrid.SelectedRows[0].Cells[4].Value;
-            selectedItem = controller.GetFridgeItem(id);
-            if (selectedItem != null)
-            {
-                cbFoodItem.SelectedItem = selectedItem.FoodItem;
-                tbQty.Text = selectedItem.Qty.ToString();
-                tbDaysRemaining.Text = selectedItem.DaysRemaining().ToString();
-            }
-        }
-
-        private void cbFoodItem_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            tbDaysRemaining.Text = ((FoodItem)cbFoodItem.SelectedItem).ExpirationDays.ToString();
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            long id = (long)dgvFridgeGrid.SelectedRows[0].Cells[4].Value;
-            controller.DeleteFridgeItem(id);
             populateGrid(tbSearch.Text);
         }
+
     }
 }

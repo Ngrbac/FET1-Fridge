@@ -40,6 +40,10 @@
             this.btnDeleteRecipe = new System.Windows.Forms.Button();
             this.btnSaveRecipe = new System.Windows.Forms.Button();
             this.dgvRecipes = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cookTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.recipesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bsRecipes = new System.Windows.Forms.BindingSource(this.components);
             this.dsRecipes = new System.Data.DataSet();
@@ -47,33 +51,29 @@
             this.dataColumn1 = new System.Data.DataColumn();
             this.dataColumn2 = new System.Data.DataColumn();
             this.dataColumn3 = new System.Data.DataColumn();
+            this.dataColumn6 = new System.Data.DataColumn();
             this.gbIngredients = new System.Windows.Forms.GroupBox();
             this.btnEditIngredient = new System.Windows.Forms.Button();
             this.btnDeleteIngredient = new System.Windows.Forms.Button();
+            this.btnSaveIngredient = new System.Windows.Forms.Button();
             this.lblFoodItem = new System.Windows.Forms.Label();
             this.cbFoodItem = new System.Windows.Forms.ComboBox();
             this.lblQuantity = new System.Windows.Forms.Label();
             this.tbQuantity = new System.Windows.Forms.TextBox();
             this.dgvIngredients = new System.Windows.Forms.DataGridView();
-            this.ingredientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Measure = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IngredientID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ingredientsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bsIngredients = new System.Windows.Forms.BindingSource(this.components);
             this.dsIngredients = new System.Data.DataSet();
             this.Ingredients = new System.Data.DataTable();
             this.dataColumn4 = new System.Data.DataColumn();
             this.dataColumn5 = new System.Data.DataColumn();
-            this.btnSaveIngredient = new System.Windows.Forms.Button();
-            this.dataColumn6 = new System.Data.DataColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cookTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataColumn7 = new System.Data.DataColumn();
             this.dataColumn8 = new System.Data.DataColumn();
-            this.ingredientsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.ingredientDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Measure = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ingredientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IngredientID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ingredientDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbRecipes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecipes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.recipesBindingSource)).BeginInit();
@@ -82,11 +82,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.Recipes)).BeginInit();
             this.gbIngredients.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredients)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ingredientsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ingredientsBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsIngredients)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsIngredients)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Ingredients)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ingredientsBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ingredientsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // gbRecipes
@@ -171,6 +171,7 @@
             this.btnEditRecipe.TabIndex = 12;
             this.btnEditRecipe.Text = "Edit";
             this.btnEditRecipe.UseVisualStyleBackColor = true;
+            this.btnEditRecipe.Click += new System.EventHandler(this.btnEditRecipe_Click);
             // 
             // btnDeleteRecipe
             // 
@@ -181,6 +182,7 @@
             this.btnDeleteRecipe.TabIndex = 11;
             this.btnDeleteRecipe.Text = "Delete";
             this.btnDeleteRecipe.UseVisualStyleBackColor = true;
+            this.btnDeleteRecipe.Click += new System.EventHandler(this.btnDeleteRecipe_Click);
             // 
             // btnSaveRecipe
             // 
@@ -191,6 +193,7 @@
             this.btnSaveRecipe.TabIndex = 10;
             this.btnSaveRecipe.Text = "Save";
             this.btnSaveRecipe.UseVisualStyleBackColor = true;
+            this.btnSaveRecipe.Click += new System.EventHandler(this.btnSaveRecipe_Click);
             // 
             // dgvRecipes
             // 
@@ -207,9 +210,40 @@
             this.dgvRecipes.Location = new System.Drawing.Point(6, 156);
             this.dgvRecipes.Name = "dgvRecipes";
             this.dgvRecipes.ReadOnly = true;
+            this.dgvRecipes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRecipes.Size = new System.Drawing.Size(459, 442);
             this.dgvRecipes.TabIndex = 0;
             this.dgvRecipes.SelectionChanged += new System.EventHandler(this.DgvRecipes_SelectionChanged);
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
+            // cookTimeDataGridViewTextBoxColumn
+            // 
+            this.cookTimeDataGridViewTextBoxColumn.DataPropertyName = "CookTime";
+            this.cookTimeDataGridViewTextBoxColumn.HeaderText = "CookTime";
+            this.cookTimeDataGridViewTextBoxColumn.Name = "cookTimeDataGridViewTextBoxColumn";
+            this.cookTimeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // recipesBindingSource
             // 
@@ -243,11 +277,16 @@
             // dataColumn2
             // 
             this.dataColumn2.ColumnName = "CookTime";
-            this.dataColumn2.DataType = typeof(int);
+            this.dataColumn2.DataType = typeof(long);
             // 
             // dataColumn3
             // 
             this.dataColumn3.ColumnName = "Description";
+            // 
+            // dataColumn6
+            // 
+            this.dataColumn6.ColumnName = "ID";
+            this.dataColumn6.DataType = typeof(long);
             // 
             // gbIngredients
             // 
@@ -275,6 +314,7 @@
             this.btnEditIngredient.TabIndex = 25;
             this.btnEditIngredient.Text = "Edit";
             this.btnEditIngredient.UseVisualStyleBackColor = true;
+            this.btnEditIngredient.Click += new System.EventHandler(this.btnEditIngredient_Click);
             // 
             // btnDeleteIngredient
             // 
@@ -285,6 +325,18 @@
             this.btnDeleteIngredient.TabIndex = 24;
             this.btnDeleteIngredient.Text = "Delete";
             this.btnDeleteIngredient.UseVisualStyleBackColor = true;
+            this.btnDeleteIngredient.Click += new System.EventHandler(this.btnDeleteIngredient_Click);
+            // 
+            // btnSaveIngredient
+            // 
+            this.btnSaveIngredient.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnSaveIngredient.Location = new System.Drawing.Point(223, 117);
+            this.btnSaveIngredient.Name = "btnSaveIngredient";
+            this.btnSaveIngredient.Size = new System.Drawing.Size(75, 33);
+            this.btnSaveIngredient.TabIndex = 23;
+            this.btnSaveIngredient.Text = "Save";
+            this.btnSaveIngredient.UseVisualStyleBackColor = true;
+            this.btnSaveIngredient.Click += new System.EventHandler(this.btnSaveIngredient_Click);
             // 
             // lblFoodItem
             // 
@@ -331,21 +383,37 @@
             this.dgvIngredients.AutoGenerateColumns = false;
             this.dgvIngredients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvIngredients.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IngredientID,
             this.ingredientDataGridViewTextBoxColumn,
             this.Measure,
-            this.quantityDataGridViewTextBoxColumn,
-            this.IngredientID});
+            this.quantityDataGridViewTextBoxColumn});
             this.dgvIngredients.DataSource = this.ingredientsBindingSource1;
             this.dgvIngredients.Location = new System.Drawing.Point(6, 156);
             this.dgvIngredients.Name = "dgvIngredients";
             this.dgvIngredients.ReadOnly = true;
+            this.dgvIngredients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvIngredients.Size = new System.Drawing.Size(369, 442);
             this.dgvIngredients.TabIndex = 0;
             // 
-            // ingredientsBindingSource
+            // Measure
             // 
-            this.ingredientsBindingSource.DataMember = "Ingredients";
-            this.ingredientsBindingSource.DataSource = this.bsIngredients;
+            this.Measure.DataPropertyName = "Measure";
+            this.Measure.HeaderText = "Measure";
+            this.Measure.Name = "Measure";
+            this.Measure.ReadOnly = true;
+            // 
+            // IngredientID
+            // 
+            this.IngredientID.DataPropertyName = "ID";
+            this.IngredientID.HeaderText = "ID";
+            this.IngredientID.Name = "IngredientID";
+            this.IngredientID.ReadOnly = true;
+            this.IngredientID.Visible = false;
+            // 
+            // ingredientsBindingSource1
+            // 
+            this.ingredientsBindingSource1.DataMember = "Ingredients";
+            this.ingredientsBindingSource1.DataSource = this.bsIngredients;
             // 
             // bsIngredients
             // 
@@ -376,52 +444,6 @@
             this.dataColumn5.ColumnName = "Quantity";
             this.dataColumn5.DataType = typeof(decimal);
             // 
-            // btnSaveIngredient
-            // 
-            this.btnSaveIngredient.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnSaveIngredient.Location = new System.Drawing.Point(223, 117);
-            this.btnSaveIngredient.Name = "btnSaveIngredient";
-            this.btnSaveIngredient.Size = new System.Drawing.Size(75, 33);
-            this.btnSaveIngredient.TabIndex = 23;
-            this.btnSaveIngredient.Text = "Save";
-            this.btnSaveIngredient.UseVisualStyleBackColor = true;
-            this.btnSaveIngredient.Click += new System.EventHandler(this.btnSaveIngredient_Click);
-            // 
-            // dataColumn6
-            // 
-            this.dataColumn6.ColumnName = "ID";
-            this.dataColumn6.DataType = typeof(long);
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "ID";
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            // 
-            // cookTimeDataGridViewTextBoxColumn
-            // 
-            this.cookTimeDataGridViewTextBoxColumn.DataPropertyName = "CookTime";
-            this.cookTimeDataGridViewTextBoxColumn.HeaderText = "CookTime";
-            this.cookTimeDataGridViewTextBoxColumn.Name = "cookTimeDataGridViewTextBoxColumn";
-            this.cookTimeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // descriptionDataGridViewTextBoxColumn
-            // 
-            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
-            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
-            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // dataColumn7
             // 
             this.dataColumn7.ColumnName = "Measure";
@@ -431,25 +453,10 @@
             this.dataColumn8.ColumnName = "ID";
             this.dataColumn8.DataType = typeof(long);
             // 
-            // ingredientsBindingSource1
+            // ingredientsBindingSource
             // 
-            this.ingredientsBindingSource1.DataMember = "Ingredients";
-            this.ingredientsBindingSource1.DataSource = this.bsIngredients;
-            // 
-            // ingredientDataGridViewTextBoxColumn
-            // 
-            this.ingredientDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ingredientDataGridViewTextBoxColumn.DataPropertyName = "Ingredient";
-            this.ingredientDataGridViewTextBoxColumn.HeaderText = "Ingredient";
-            this.ingredientDataGridViewTextBoxColumn.Name = "ingredientDataGridViewTextBoxColumn";
-            this.ingredientDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // Measure
-            // 
-            this.Measure.DataPropertyName = "Measure";
-            this.Measure.HeaderText = "Measure";
-            this.Measure.Name = "Measure";
-            this.Measure.ReadOnly = true;
+            this.ingredientsBindingSource.DataMember = "Ingredients";
+            this.ingredientsBindingSource.DataSource = this.bsIngredients;
             // 
             // quantityDataGridViewTextBoxColumn
             // 
@@ -458,13 +465,13 @@
             this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
             this.quantityDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // IngredientID
+            // ingredientDataGridViewTextBoxColumn
             // 
-            this.IngredientID.DataPropertyName = "ID";
-            this.IngredientID.HeaderText = "ID";
-            this.IngredientID.Name = "IngredientID";
-            this.IngredientID.ReadOnly = true;
-            this.IngredientID.Visible = false;
+            this.ingredientDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ingredientDataGridViewTextBoxColumn.DataPropertyName = "Ingredient";
+            this.ingredientDataGridViewTextBoxColumn.HeaderText = "Ingredient";
+            this.ingredientDataGridViewTextBoxColumn.Name = "ingredientDataGridViewTextBoxColumn";
+            this.ingredientDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // frmRecipeBook
             // 
@@ -475,6 +482,7 @@
             this.Controls.Add(this.gbRecipes);
             this.Name = "frmRecipeBook";
             this.Text = "RecipeBook";
+            this.Load += new System.EventHandler(this.frmRecipeBook_Load);
             this.gbRecipes.ResumeLayout(false);
             this.gbRecipes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecipes)).EndInit();
@@ -485,11 +493,11 @@
             this.gbIngredients.ResumeLayout(false);
             this.gbIngredients.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredients)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ingredientsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ingredientsBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsIngredients)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsIngredients)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Ingredients)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ingredientsBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ingredientsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -534,12 +542,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cookTimeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
         private System.Data.DataColumn dataColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ingredientDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Measure;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn IngredientID;
         private System.Windows.Forms.BindingSource ingredientsBindingSource1;
         private System.Data.DataColumn dataColumn7;
         private System.Data.DataColumn dataColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ingredientDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
     }
 }
