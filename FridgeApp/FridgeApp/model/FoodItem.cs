@@ -35,7 +35,7 @@ namespace Lib
             return Name;
         }
 
-        internal void Save()
+        public void Save()
         {
             if (ID == -1)
             {
@@ -45,6 +45,29 @@ namespace Lib
             {
                 update();
             }
+        }
+        private void insert()
+        {
+            if (!DBLink.TryConnect())
+            {
+                MessageBox.Show("Cannot connect to the db");
+                return;
+            }
+
+            string sql = "" +
+                "INSERT INTO FoodItem (Name, ExpirationDays, Measure)" + Environment.NewLine +
+                "VALUES (@Name, @ExpirationDays, @Measure)";
+
+            DynamicParameters parameter = new DynamicParameters();
+
+            parameter.Add("@Name", Name, DbType.String, ParameterDirection.Input);
+            parameter.Add("@ExpirationDays", ExpirationDays, DbType.Int64, ParameterDirection.Input);
+            parameter.Add("@Measure", Measure.ID, DbType.Int64, ParameterDirection.Input);
+            DBLink.ExecuteSQL(sql, parameter);
+
+            ID = DBLink.Query<int>("SELECT last_insert_rowid() AS ID").First();
+
+            DBLink.TryDisconnect();
         }
 
         private void update()
@@ -71,32 +94,8 @@ namespace Lib
             DBLink.ExecuteSQL(sql, parameter);
             DBLink.TryDisconnect();
         }
-
-        private void insert()
-        {
-            if (!DBLink.TryConnect())
-            {
-                MessageBox.Show("Cannot connect to the db");
-                return;
-            }
-
-            string sql = "" +
-                "INSERT INTO FoodItem (Name, ExpirationDays, Measure)" + Environment.NewLine +
-                "VALUES (@Name, @ExpirationDays, @Measure)";
-
-            DynamicParameters parameter = new DynamicParameters();
-                       
-            parameter.Add("@Name", Name, DbType.String, ParameterDirection.Input);
-            parameter.Add("@ExpirationDays", ExpirationDays, DbType.Int64, ParameterDirection.Input);
-            parameter.Add("@Measure", Measure.ID, DbType.Int64, ParameterDirection.Input);
-            DBLink.ExecuteSQL(sql, parameter);
-
-            ID = DBLink.Query<int>("SELECT last_insert_rowid() AS ID").First();
-
-            DBLink.TryDisconnect();
-        }
-
-        internal void Delete()
+        
+        public void Delete()
         {
             if (!DBLink.TryConnect())
             {

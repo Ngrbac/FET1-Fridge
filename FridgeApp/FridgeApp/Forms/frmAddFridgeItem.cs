@@ -39,9 +39,9 @@ namespace FridgeApp
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            var item = (FoodItem)cbFoodItem.SelectedItem;
-            var qty = Convert.ToDecimal(tbQuantity.Text);
-            controller.AddItemToFridge(item, qty);
+            //var item = (FoodItem)cbFoodItem.SelectedItem;
+            //var qty = Convert.ToDecimal(tbQuantity.Text);
+            //controller.AddItemToFridge(item, qty);
         }
 
         private bool isDecimal(String input)

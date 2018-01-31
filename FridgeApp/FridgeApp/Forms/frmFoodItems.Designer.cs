@@ -30,6 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvFoodItems = new System.Windows.Forms.DataGridView();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expiresInDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.measureDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblFoodItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bsFoodItems = new System.Windows.Forms.BindingSource(this.components);
             this.dsFoodItems = new System.Data.DataSet();
@@ -46,9 +49,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.measureDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expiresInDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFoodItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblFoodItemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsFoodItems)).BeginInit();
@@ -77,6 +77,28 @@
             this.dgvFoodItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvFoodItems.Size = new System.Drawing.Size(596, 322);
             this.dgvFoodItems.TabIndex = 0;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // expiresInDataGridViewTextBoxColumn
+            // 
+            this.expiresInDataGridViewTextBoxColumn.DataPropertyName = "ExpiresIn";
+            this.expiresInDataGridViewTextBoxColumn.HeaderText = "ExpiresIn";
+            this.expiresInDataGridViewTextBoxColumn.Name = "expiresInDataGridViewTextBoxColumn";
+            this.expiresInDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // measureDataGridViewTextBoxColumn
+            // 
+            this.measureDataGridViewTextBoxColumn.DataPropertyName = "Measure";
+            this.measureDataGridViewTextBoxColumn.HeaderText = "Measure";
+            this.measureDataGridViewTextBoxColumn.Name = "measureDataGridViewTextBoxColumn";
+            this.measureDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // tblFoodItemsBindingSource
             // 
@@ -203,28 +225,6 @@
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // measureDataGridViewTextBoxColumn
-            // 
-            this.measureDataGridViewTextBoxColumn.DataPropertyName = "Measure";
-            this.measureDataGridViewTextBoxColumn.HeaderText = "Measure";
-            this.measureDataGridViewTextBoxColumn.Name = "measureDataGridViewTextBoxColumn";
-            this.measureDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // expiresInDataGridViewTextBoxColumn
-            // 
-            this.expiresInDataGridViewTextBoxColumn.DataPropertyName = "ExpiresIn";
-            this.expiresInDataGridViewTextBoxColumn.HeaderText = "ExpiresIn";
-            this.expiresInDataGridViewTextBoxColumn.Name = "expiresInDataGridViewTextBoxColumn";
-            this.expiresInDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // frmFoodItems
             // 

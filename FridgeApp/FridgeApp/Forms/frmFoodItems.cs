@@ -177,7 +177,5 @@ namespace FridgeApp
             var selectedItem = dgvFoodItems.SelectedRows[0].Cells[0].Value;
             controller.DeleteFoodItem(selectedItem.ToString());
         }
-        
-       
     }
 }
