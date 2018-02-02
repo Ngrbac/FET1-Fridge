@@ -162,8 +162,12 @@ namespace FridgeApp
             foreach (var measure in controller.GetMeasurements())
             {
                 cbMeasure.Items.Add(measure);
-            }            
-            cbMeasure.SelectedIndex = 0;
+            }
+            if (cbMeasure.Items.Count != 0)
+            {
+                cbMeasure.SelectedIndex = 0;
+            }
+            
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

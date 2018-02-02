@@ -101,9 +101,7 @@ namespace Lib
             parameter.Add("@Name", Name, DbType.String, ParameterDirection.Input);
             parameter.Add("@CookTime", CookTime, DbType.Int64, ParameterDirection.Input);
             parameter.Add("@Desc", Description, DbType.String, ParameterDirection.Input);
-            DBLink.ExecuteSQL(sql, parameter);
-
-            ID = DBLink.Query<int>("SELECT last_insert_rowid() AS ID").First();
+            DBLink.ExecuteSQL(sql, parameter);            
 
             DBLink.TryDisconnect();
         }
