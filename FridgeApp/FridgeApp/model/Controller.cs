@@ -379,9 +379,7 @@ CREATE TABLE IF NOT EXISTS Ingredients
                     dsFridgeItems.Tables[0].Rows.Add(fridgeItem.FoodItem.Name, fridgeItem.Qty, fridgeItem.FoodItem.Measure.Name, fridgeItem.DaysRemaining(), fridgeItem.ID);
                 }
             }
-        }
-
-        
+        }        
 
         public FridgeItem GetFridgeItem(long id)
         {

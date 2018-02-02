@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FridgeApp.frmFoodItems" Collapsed="true">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAgUAgACIkQAFABICARQACgAAAABBABQEAAAoQIQQ=</HashCode>
+      <FileName>Forms\frmFoodItems.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FridgeApp.frmMain" Collapsed="true">
+    <Position X="10.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEiAQADCIBhkEyhJWAAEADgAAAIBEASQGACAoagQQ=</HashCode>
+      <FileName>Forms\frmMain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FridgeApp.frmMeasurement" Collapsed="true">
+    <Position X="10.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAgACAACgEAAEABICAAAACAAAQQRAAASmQAAqQAQQ=</HashCode>
+      <FileName>Forms\frmMeasurement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FridgeApp.frmRecipeBook" Collapsed="true">
+    <Position X="10.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>iYQCIAIgQLIHklEKRIWCIH5CgARKkBAAAAAkWUgAAAA=</HashCode>
+      <FileName>Forms\frmRecipeBook.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FridgeApp.Controller" Collapsed="true">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABgAAACIABTBgIAQDEAAADAAIABAARAAgECgABAIAAI=</HashCode>
+      <FileName>model\Controller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FridgeApp.DBLink" Collapsed="true">
+    <Position X="14.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAIAAAIAEAgAABAAAAAAAgA=</HashCode>
+      <FileName>model\DBLink.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FridgeApp.Program" Collapsed="true">
+    <Position X="6.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>model\Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.FoodItem" Collapsed="true">
+    <Position X="8.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAIAAAABAgAAEAAAAAAQAAAECAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>model\FoodItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.FridgeItem">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAABAAAAAAAAAAQAEAAEAAAAAABAAEAAEAAA=</HashCode>
+      <FileName>model\FridgeItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Ingredient">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIBAAABAAAAAAAAAAAAAAAEAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>model\Ingredient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.MeasuredItem" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAgAAAAQAAAAAAAAAAAAA=</HashCode>
+      <FileName>model\MeasuredItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Measurement" Collapsed="true">
+    <Position X="8.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAABAgAAEAAAAAAQAAAEAAIAAAAAAAAAEAAA=</HashCode>
+      <FileName>model\Measurement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Recipe" Collapsed="true">
+    <Position X="8.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAABgoAAAAAAgAKQAAAEAAAAAAAAAAAAEQAA=</HashCode>
+      <FileName>model\Recipe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Lib.Refrigerator" Collapsed="true">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>model\Refrigerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
