@@ -49,12 +49,27 @@ namespace FridgeApp
             else
             {
                 currentRecipe.AddIngredient((FoodItem)cbFoodItem.SelectedItem, Convert.ToDecimal(tbQuantity.Text));
-            }
-            
+            }            
             populateIngredientsGrid();
-
+            colorCurrentRecipe();
         }
 
+        private void colorCurrentRecipe()
+        {
+            Color color;
+            if (controller.HasSupply(currentRecipe))
+            {
+                color = Color.LightGreen;
+            }
+            else
+            {
+                color = Color.White;
+            }
+            foreach (DataGridViewCell cell in dgvRecipes.SelectedRows[0].Cells)
+            {
+                cell.Style.BackColor = color;
+            }
+        }
         private void DgvRecipes_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvRecipes.SelectedRows.Count == 0)
@@ -64,9 +79,50 @@ namespace FridgeApp
             currentRecipe = controller.GetRecipeByID((long)dgvRecipes.SelectedRows[0].Cells[1].Value);
             clearIngredientsFields();
             populateIngredientsGrid();
-
         }
 
+        private void colorIngredients()
+        {
+            foreach (var ingredient in currentRecipe.Ingredients)
+            {
+                if (controller.HasSupply(ingredient))
+                {
+                    var row = getIngredientRow(ingredient);
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        cell.Style.BackColor = Color.LightGreen; 
+                    }
+                }
+            }
+        }
+        private void colorRecipes()
+        {
+            foreach (DataGridViewRow row in dgvRecipes.Rows)
+            {
+                var recipe = controller.GetRecipeByID((long)row.Cells[1].Value);
+
+                if (controller.HasSupply(recipe))
+                {
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        cell.Style.BackColor = Color.LightGreen;
+                    }
+                }
+            }
+        }
+
+        
+        private DataGridViewRow getIngredientRow(Ingredient ingredient)
+        {
+            foreach (DataGridViewRow row in dgvIngredients.Rows)
+            {
+                if (ingredient.ID == (long)row.Cells[0].Value)
+                {
+                    return row; 
+                }                
+            }
+            return null;
+        }
         private void clearIngredientsFields()
         {
             selectedIngredient = null;
@@ -84,11 +140,8 @@ namespace FridgeApp
                     dsIngredients.Tables[0].Rows.Add(ingredient.FoodItem.Name, ingredient.Qty, ingredient.FoodItem.Measure, ingredient.ID);
                 }
             }
-            
-        }
-    
-               
-
+            colorIngredients();
+        } 
         private void btnSaveRecipe_Click(object sender, EventArgs e)
         {
             if (!isNumber(tbCookTime.Text))
@@ -116,6 +169,7 @@ namespace FridgeApp
         private void populateRecipeGrid()
         {
             controller.FillRecipeGrid(dsRecipes);
+            colorRecipes();
         }
 
         private void insertRecipe()
@@ -245,6 +299,7 @@ namespace FridgeApp
             var selectedIng = (long)dgvIngredients.SelectedRows[0].Cells[0].Value;
             currentRecipe.RemoveIngredient(selectedIng);               
             populateIngredientsGrid();
+            colorCurrentRecipe();
         }
 
         private void btnEditIngredient_Click(object sender, EventArgs e)
@@ -253,8 +308,7 @@ namespace FridgeApp
             if (selectedIngredient != null)
             {
                 cbFoodItem.SelectedItem = selectedIngredient.FoodItem;
-                tbQuantity.Text = selectedIngredient.Qty.ToString();
-                //editCheck = true;
+                tbQuantity.Text = selectedIngredient.Qty.ToString();              
             }            
         }
     }

@@ -17,12 +17,12 @@ namespace FridgeApp
         private Dictionary<string, Measurement> measurementStorage { get; set; }
         public Controller()
         {
-            connectToDB();            
+            connectToDB();
             loadMeasurements();
             loadFoodItems();
             loadFridgeItems();
-            loadRecipeBook();   
-        }        
+            loadRecipeBook();
+        }
         // Dio sa konekcijama na bazu
         #region Database
         private void connectToDB()
@@ -205,14 +205,14 @@ CREATE TABLE IF NOT EXISTS Ingredients
             measurementStorage.Add(name, selectedItem);
         }
 
-        
+
 
         public void DeleteMeasurement(string name)                                            //brisanje mjere
         {
             measurementStorage[name].Delete();
             measurementStorage.Remove(name);
         }
-        
+
         public void FillMeasurementGrid(DataSet dsMeasurement)                                //punjenje tablice sa mjerama
         {
             dsMeasurement.Tables[0].Rows.Clear();
@@ -347,7 +347,7 @@ CREATE TABLE IF NOT EXISTS Ingredients
             var recipe = new Recipe(name, cookTime, desc);
             recipe.Save();
             recipeBook.Add(recipe);
-          
+
         }
 
         public void FillRecipeGrid(DataSet dsRecipes)                                            //punjenje tablice recepata
@@ -355,8 +355,32 @@ CREATE TABLE IF NOT EXISTS Ingredients
             dsRecipes.Tables[0].Rows.Clear();
             foreach (var recipe in recipeBook)
             {
-                dsRecipes.Tables[0].Rows.Add(recipe.Name, recipe.CookTime, recipe.Description, recipe.ID);            
+                dsRecipes.Tables[0].Rows.Add(recipe.Name, recipe.CookTime, recipe.Description, recipe.ID);
             }
+        }
+
+        public bool HasSupply(Ingredient ingredient)
+        {
+            decimal qtySum = 0;
+            foreach (var item in fridge)
+            {
+                if (ingredient.FoodItem == item.FoodItem)
+                {
+                    qtySum = qtySum + item.Qty;
+                }
+            }
+            return (qtySum >= ingredient.Qty);
+        }
+        public bool HasSupply(Recipe recipe)
+        {
+            foreach (var ingredient in recipe.Ingredients)
+            {
+                if (!HasSupply(ingredient))
+                {
+                    return false;
+                } 
+            }
+            return true;
         }
         #endregion
         // Dio o friziderskim stvarima
@@ -379,7 +403,7 @@ CREATE TABLE IF NOT EXISTS Ingredients
                     dsFridgeItems.Tables[0].Rows.Add(fridgeItem.FoodItem.Name, fridgeItem.Qty, fridgeItem.FoodItem.Measure.Name, fridgeItem.DaysRemaining(), fridgeItem.ID);
                 }
             }
-        }        
+        }
 
         public FridgeItem GetFridgeItem(long id)
         {

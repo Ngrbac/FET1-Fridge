@@ -55,10 +55,28 @@ namespace Lib
             {
                 MessageBox.Show("Please save the  recipe first");
                 return;
+            }            
+            if (hasFoodItem(item))
+            {
+                MessageBox.Show("You cannot have same item twice. Edit existing one or give up.");
+                return;
             }
             var newIngredient = new Ingredient(this, item, qty);
             Ingredients.Add(newIngredient);
             newIngredient.Save();
+        }
+
+        private bool hasFoodItem(FoodItem item)
+        {
+            foreach (var ingredient in Ingredients)
+            {
+                if (item == ingredient.FoodItem)
+                {
+                    return true;
+                }
+            }
+          
+            return false;
         }
 
         public void RemoveIngredient(long id)
